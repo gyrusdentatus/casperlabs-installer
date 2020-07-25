@@ -7,7 +7,7 @@ WHITE='\033[1;97m' # LARGER FONT
 LBLUE='\033[1;96m' # HIGHLIGHTS / NUMBERS ...
 LGREEN='\033[1;92m' # SUCCESS
 NOCOLOR='\033[0m' # DEFAULT FONT
-set -x
+#set -x
 ## Get server ipv4
 ip_addr=`curl -sS v4.icanhazip.com`
 
@@ -89,7 +89,7 @@ function add_repos() {
      printf "%b\n\n\n" "${WHITE} Updating apt sources ..."
      apt update > /dev/null 2>&1
      printf "%b\n\n\n" "${WHITE} Installing casperlabs and casperlabs-client ..."
-     apt install casperlabs casperlabs-client > /dev/null 2>&1 && printf "%b\n\n\n" "${WHITE} Casperlabs successfully downloaded and installed ..." 
+     apt install casperlabs casperlabs-client -y > /dev/null 2>&1 && printf "%b\n\n\n" "${WHITE} Casperlabs successfully downloaded and installed ..." 
    else
      printf "%b\n\n\n" "${WHITE} Casperlabs are already in your apt sources.list.d/ directory ..."
      printf "%b\n\n\n" "${WHITE} Skipping ..."
@@ -98,9 +98,9 @@ function add_repos() {
 function create_config() {
  if [ ! -e /etc/casperlabs/config.toml ]
     then
-        printf '%s\n' " [server] " > ${configpath}
-        printf '%s\n' " host=${ip_addr} " >> "${configpath}"
-        cat casperlabs/config.toml >> ${configpath}
+        printf '%s\n' " [server] " > /etc/casperlabs/config.toml
+        printf '%s\n' " host=${ip_addr} " >> /etc/casperlabs/config.toml
+        cat casperlabs/config.toml >> /etc/casperlabs/config.toml
     else    
         printf "%b\n\n\n" "${WHITE} config.toml already exists in ${YELLOW} /etc/casperlabs/ ${WHITE} skipping ..." 
  fi 
@@ -121,7 +121,7 @@ function systemd_print_node() {
                 printf '%s\n' "" >> $printingpath
                 printf '%s\n' "[Service]" >> $printingpath
                 printf '%s\n' "ENVIRONMENT=\"_JAVA_OPTIONS=-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$HOME/.casperlabs"\" >> $printingpath
-                printf '%s\n' "ExecStart=/usr/bin/casperlabs-node --config-file=/etc/casperlabs/config.toml run --server-data-dir=$HOME/.casperlabs/casperlabs" >> $printingpath
+                printf '%s\n' "ExecStart=/usr/bin/casperlabs-node --config-file=/etc/casperlabs/config.toml run --server-data-dir=$HOME/.casperlabs" >> $printingpath
                 printf '%s\n' "User=casperlabs" >> $printingpath
                 printf '%s\n' "Restart=no" >> $printingpath
                 printf '%s\n' "" >> $printingpath
