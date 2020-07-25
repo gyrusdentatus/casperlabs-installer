@@ -83,7 +83,7 @@ function add_repos() {
      printf "%b\n\n\n" "${WHITE} Adding casperlabs sources.list to /etc/apt/sources.list.d/ ..."
      echo "deb https://dl.bintray.com/casperlabs/debian /" | sudo tee -a /etc/apt/sources.list.d/casperlabs.list
      printf "%b\n\n\n" "${WHITE} Fetching casperlabs public key ..."
-     curl -o casperlabs-public.key.asc https://bintray.com/user/downloadSubjectPublicKey?username=casperlabs > /dev/null/ 2>&1
+     curl -o casperlabs-public.key.asc https://bintray.com/user/downloadSubjectPublicKey?username=casperlabs ## // for da sake of develepoment // > /dev/null 2>&1
      printf "%b\n\n\n" "${WHITE} Adding casperlabs public key to apt ..."
      apt-key add casperlabs-public.key.asc
      printf "%b\n\n\n" "${WHITE} Updating apt sources ..."
@@ -98,9 +98,9 @@ function add_repos() {
 function create_config() {
  if [ ! -e /etc/casperlabs/config.toml ]
     then
-        printf '%s\n' " [server] " > $configpath
-        printf '%s\n' " host=${ip_addr}" >> $configpath
-        cat casperlabs/config.toml >> $configpath
+        printf '%s\n' " [server] " > ${configpath}
+        printf '%s\n' " host=${ip_addr} " >> "${configpath}"
+        cat casperlabs/config.toml >> ${configpath}
     else    
         printf "%b\n\n\n" "${WHITE} config.toml already exists in ${YELLOW} /etc/casperlabs/ ${WHITE} skipping ..." 
  fi 
