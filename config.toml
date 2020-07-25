@@ -1,6 +1,3 @@
-
- [server]
- #host = 
   port = 40400
   http-port = 40403
   kademlia-port = 40404
@@ -31,16 +28,15 @@
  [tls]
 
 
- certificate = "$HOME/.casperlabs/keys/node.certificate.pem"
+ certificate = "$HOME/.casperlabs/casperlabs/keys/node.certificate.pem"
  key = "$HOME/.casperlabs/casperlabs/keys/node.key.pem"
  api-certificate = "$HOME/.casperlabs/casperlabs/keys/api.certificate.pem"
  api-key = "$HOME/.casperlabs/casperlabs/keys/api.key.pem"
 
  [casper]
 
- validator-public-key-path = "$HOME/.casperlabs/casperlabs/validator-public.pem"
- validator-private-key-path = "$HOME/.casperlabs/cassperlabs/validator-private.key"
+ validator-public-key-path = "$HOME/.casperlabs/casperlabs/keys/validator-public.pem"
+ validator-private-key-path = "$HOME/.casperlabs/casperlabs/keys/validator-private.pem"
  certificate = "$HOME/.casperlabs/casperlabs/keys/node.certificate.pem"
  port-external = 40401
  port-internal = 40402
-
