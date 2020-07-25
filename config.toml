@@ -1,0 +1,46 @@
+
+ [server]
+ #host = 
+  port = 40400
+  http-port = 40403
+  kademlia-port = 40404
+  bootstrap = "casperlabs://7dae5a7981bc9694616b5aac8fb7786797ce98ed@13.57.226.23?protocol=40400&discovery=40404 casperlabs://f2a46587e227428f38fa6f1e8f3c4749e8543783@52.53.252.92?protocol=40400&discovery=40404 casperlabs://4bd89b7dfa3eceea71f928ee895fbb2bf77481a9@13.52.217.79?protocol=40400&discovery=40404"
+  data-dir = "$HOME/.casperlabs/casperlabs"
+  relay-factor = 5
+  sync-max-parallel = 10
+  init-sync-min-successful = 5
+  init-sync-skip-failed-nodes = true
+  main-threads = 50
+  # Size of the thread pool used to handle incoming requests.
+  ingress-threads = 100
+
+# Size of the thread pool waiting for the database writer connection.
+  db-write-threads = 90
+
+# Size of the thread pool waiting for a database reader connection.
+  db-read-threads = 120
+
+# Number of database connections in the reader pool.
+  db-read-connections = 30
+
+ [grpc]
+ socket = "$HOME/.casperlabs/.casper-node.sock"
+ port-external = 40401
+ port-internal = 40402
+
+ [tls]
+
+
+ certificate = "$HOME/.casperlabs/keys/node.certificate.pem"
+ key = "$HOME/.casperlabs/casperlabs/keys/node.key.pem"
+ api-certificate = "$HOME/.casperlabs/casperlabs/keys/api.certificate.pem"
+ api-key = "$HOME/.casperlabs/casperlabs/keys/api.key.pem"
+
+ [casper]
+
+ validator-public-key-path = "$HOME/.casperlabs/casperlabs/validator-public.pem"
+ validator-private-key-path = "$HOME/.casperlabs/cassperlabs/validator-private.key"
+ certificate = "$HOME/.casperlabs/casperlabs/keys/node.certificate.pem"
+ port-external = 40401
+ port-internal = 40402
+
