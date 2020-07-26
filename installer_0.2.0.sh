@@ -100,7 +100,7 @@ function create_config() {
     then
         printf '%s\n' " [server] " > /etc/casperlabs/config.toml
         printf '%s\n' " host=${ip_addr} " >> /etc/casperlabs/config.toml
-        cat casperlabs/config.toml >> /etc/casperlabs/config.toml
+        cat config.toml >> /etc/casperlabs/config.toml
     else    
         printf "%b\n\n\n" "${WHITE} config.toml already exists in ${YELLOW} /etc/casperlabs/ ${WHITE} skipping ..." 
  fi 
@@ -202,8 +202,10 @@ systemd_print_node
 systemd_print_engine
 get_chainspec
 create_keys
+cd $HOME/casperlabs-installer
 create_config
 chown -R casperlabs:casperlabs $HOME/.casperlabs/
 chown casperlabs:casperlabs /etc/casperlabs/config.toml
+systemctl start casperlabs-node.service && systemctl start casperlabs-engine-grpc-server.service
 } 
 full_setup
