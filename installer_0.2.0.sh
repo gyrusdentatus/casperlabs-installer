@@ -211,7 +211,7 @@ function systemd_print_engine () {
   fi
 }
 
-function () priv_key {
+function priv_key () {
   printf "%b\n\n\n" "${WHITE} Enter your ${YELLOW} private key ${WHITE}. It will be moved to your keys directory."
   read priv_key
   printf "%b\n\n\n" "${WHITE} You have entered $priv_key as your private validator key."
