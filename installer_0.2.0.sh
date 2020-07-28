@@ -64,9 +64,9 @@ fi
 
 
 function get_chainspec () {
-mkdir -p ~/.casperlabs/casperlabs/chainspec/genesis
+mkdir -p ~/.casperlabs/chainspec/genesis
 
-cd ~/.casperlabs/casperlabs/chainspec/genesis
+cd ~/.casperlabs/chainspec/genesis
 
 curl -O https://raw.githubusercontent.com/CasperLabs/CasperLabs/dev/testnet/accounts.csv
 curl -O https://raw.githubusercontent.com/CasperLabs/CasperLabs/dev/testnet/manifest.toml
@@ -98,6 +98,7 @@ function add_repos() {
 function create_config() {
  if [ ! -e /etc/casperlabs/config.toml ]
     then
+        mkdir /etc/casperlabs/
         printf '%s\n' " [server] " > /etc/casperlabs/config.toml
         printf '%s\n' " host=${ip_addr} " >> /etc/casperlabs/config.toml
         cat config.toml >> /etc/casperlabs/config.toml
