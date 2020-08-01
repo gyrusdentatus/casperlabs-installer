@@ -135,6 +135,11 @@ function create_config() {
         printf '%s\n' " [server] " > /etc/casperlabs/config.toml
         printf '%s\n' " host=${ip_addr} " >> /etc/casperlabs/config.toml
         cat config.toml >> /etc/casperlabs/config.toml
+	printf '%s\n' ""
+	printf '%s\n' " [log] " >> /etc/casperlabs/config.toml
+	printf '%b\n' " LEVEL = \"INFO\" " >> /etc/casperlabs/config.toml
+	printf '%b\n' " json-path = \"$HOME/.casperlabs/casperlabs/\" " >> /etc/casperlabs/config.toml
+	
     else
         printf "%b\n\n\n" "${WHITE} config.toml already exists in ${YELLOW} /etc/casperlabs/ ${WHITE} skipping ..."
  fi
