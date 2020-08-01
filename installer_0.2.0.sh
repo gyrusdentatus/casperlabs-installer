@@ -16,7 +16,7 @@ casperlabs_install.sh 0.2.0 (2020-28-07)
 The installer and launcher for casperlabs validator-node
 
 USAGE:
-    ./installer_0.2.0.sh [FLAGS]
+    ./installer_0.2.1.sh [FLAGS]
 
 FLAGS:
     -i  --install           Full installation and setup
@@ -247,7 +247,7 @@ cd $HOME/casperlabs-installer
 create_config
 chown -R casperlabs:casperlabs $HOME/.casperlabs/
 chown casperlabs:casperlabs /etc/casperlabs/config.toml
-systemctl start casperlabs-node.service && systemctl start casperlabs-engine-grpc-server.service
+#systemctl start casperlabs-node.service && systemctl start casperlabs-engine-grpc-server.service
 printf "%b\n\n\n" "${WHITE} Your node should be now running. Check status after a few seconds with the -s flag ..."
 }
 
@@ -269,7 +269,7 @@ fi
 ## Run the node
 if [[ ("$1" = "--run") ||  "$1" = "-r" ]]
 then
-  systemctl start casperlabs-node.service
+  systemctl start casperlabs-node.service casperlabs-engine-grpc-server
 fi
 ## Get status from the systemdaemon file
 if [[ ("$1" = "--status") ||  "$1" = "-s" ]]
